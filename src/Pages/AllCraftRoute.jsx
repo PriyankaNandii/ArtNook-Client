@@ -13,13 +13,13 @@ const AllCraftRoute = ({ product, serialNumber }) => {
   } = product;
 
 
-  // con
+  // co
   //  
   //   
   //  
   //
   //   
-  //   stock
+  //   s
   // } = product;
 
   return (
