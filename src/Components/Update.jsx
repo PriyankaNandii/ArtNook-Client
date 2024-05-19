@@ -34,10 +34,12 @@ const Update = () => {
         const customization = form.customization.value;
         const processing = form.processing.value;
         const stock = form.stock.value;
-        const email = form.email.value;
-        const username = form.username.value;
+        // const email = form.email.value;
+        // const username = form.username.value;
          
         const UpdatedProduct = { name, photo, subcategory, description, price, rating, customization, processing, stock, email, username };
+
+       
 
         try {
             const response = await fetch(`http://localhost:5000/product/${_id}`, {
@@ -71,17 +73,17 @@ const Update = () => {
         }
     };
     return (
-        <div className="bg-[#dde3e8] min-h-screen">
-    <div className=" h-full p-10">
-    <section className=" shadow-lg rounded-xl text-gray-900">
+        <div className="dark:bg-[#dde3e8] min-h-screen">
+    <div className=" h-full p-10 md:px-20 px-5">
+    <section className="  shadow-lg rounded-xl dark:text-gray-900">
         <form onSubmit={handleUpdateProduct}
           noValidate=""
           action=""
-          className="container flex flex-col mx-auto space-y-12"
+          className="container flex flex-col mx-auto space-y-12 "
         >
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50">
+          <fieldset className="grid grid-cols-2 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50 ">
             <div className="space-y-2 col-span-full lg:col-span-1">
-              <p className="text-xl font-bold">UpdateProduct : {name}</p>
+              <p className="text-2xl font-bold">UpdateProduct : {name}</p>
               {/* <p className="text-xs">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Adipisci fuga autem eum!
@@ -208,7 +210,7 @@ const Update = () => {
                 />
               </div>
 
-              <div className="col-span-full sm:col-span-3">
+              {/* <div className="col-span-full sm:col-span-3">
                 <label htmlFor="email" className="text-sm">
                 User Email
                 </label>
@@ -220,8 +222,8 @@ const Update = () => {
                   placeholder=""
                   className="w-full h-10  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                 />
-              </div>
-              <div className="col-span-full sm:col-span-3">
+              </div> */}
+              {/* <div className="col-span-full sm:col-span-3">
                 <label htmlFor="address" className="text-sm">
                 User Name
                 </label>
@@ -233,7 +235,7 @@ const Update = () => {
                   placeholder=""
                   className="w-full h-10  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                 />
-              </div>
+              </div> */}
               <div className="col-span-full py-5">
                <input type="submit" value="Update Product"  className="btn btn-block bg-[#2f7dfc] text-white " />
               </div>

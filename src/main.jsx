@@ -14,10 +14,14 @@ import {
 import './index.css'
 import Add from './Components/Add';
 import AllCrafts from './Components/AllCrafts';
-import MyCraft from './Components/MyCraft'
+
 import { Toaster } from 'react-hot-toast'
 import Update from './Components/Update';
 import ProductDetails from './Pages/ProductDetails';
+import AllCraftsRoute from './Pages/AllCraftsRoute';
+import AuthProvider from './provider/AuthProvider';
+import MyCraft from './Pages/MyCraft';
+import CategoryData from './Pages/CategoryData';
 
 
 
@@ -31,6 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch('http://localhost:5000/product')
 
       },
       {
@@ -43,44 +48,53 @@ const router = createBrowserRouter([
       },
       {
         path: "/allcrafts",
-        element: <AllCrafts />,
+        element: <AllCraftsRoute />,
         loader: () => fetch('http://localhost:5000/product')
       },
       {
         path: "/addcraft",
-        element: <Add />
+        element: <PrivateRoute>
+          <Add />
+        </PrivateRoute>,
+        
       },
       {
         path: "/mycraft",
-        element: <MyCraft />
+        element: <PrivateRoute>
+          <MyCraft />
+        </PrivateRoute>,
+       
     
       },
       {
         path: "/updateProduct/:id",
         element: <Update />,
-        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`),
     
       },
       {
         path: "/productDetails/:id",
-        element: <ProductDetails />,
-        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+        element: <PrivateRoute>
+          <ProductDetails />
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`),
     
       },
-      // {
-      //   path: '/propertyDetails/:id',
-      //   element : <PrivateRoute>
-      //     <BannerCardDetails />
-      //   </PrivateRoute>,
-      //   loader: () => fetch('/Property.json'),
-      // },
+      {
+         path:"/categorydata/:subcategory",
+        element : 
+          <CategoryData />,
+          loader: () => fetch('http://localhost:5000/product')
+      },
     ]
   },
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+   <AuthProvider>
    <RouterProvider router={router} />
+   </AuthProvider>
    <Toaster />
   </React.StrictMode>,
 )

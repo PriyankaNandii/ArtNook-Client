@@ -1,11 +1,14 @@
-import { MdOutlineViewCozy } from "react-icons/md";
-import { MdBrowserUpdated } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
+// import { MdOutlineViewCozy } from "react-icons/md";
+// import { MdBrowserUpdated } from "react-icons/md";
+// import { RiDeleteBin6Line } from "react-icons/ri";
+
+import { Tooltip  } from 'react-tooltip'
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const AllCraft = ({ product }) => {
+const AllCraft = ({ product , products, setProducts }) => {
   const {
     _id,
     name,
@@ -46,7 +49,9 @@ const AllCraft = ({ product }) => {
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success",
-              });
+              })
+              const remaining = products.filter(pd=> pd._id !== _id)
+              setProducts(remaining)
             } else {
               throw new Error("No product was deleted");
             }
@@ -65,29 +70,51 @@ const AllCraft = ({ product }) => {
   };
 
   return (
-   <div className="">
-      <div className=" w-full min-h-screen p-10">
-    <div className="card  bg-[#dde3e8] shadow-xl">
-        <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie"/></figure>
-        <div className="card-body">
-            <h2 className="card-title">{name}</h2>
-            <p>{description}</p>
-            <div className="card-actions justify-end">
-                <Link to={`/productDetails/${_id}`}>
-                    <button className="btn bg-[#2f7dfc] text-lg font-bold text-white"><MdOutlineViewCozy /></button>
+    <div className="py-3">
+
+   
+   <div className="   p-4 shadow-xl rounded-2xl dark:text-white   ">
+	<div className="flex justify-between pb-4 border-bottom">
+		<div className="flex items-center">
+			<a rel="noopener noreferrer" href="#" className="mb-0 capitalize dark:text-gray-800">{subcategory}</a>
+		</div>
+		<a rel="noopener noreferrer" href="#">Price: ${price}</a>
+	</div>
+	<div className="space-y-4">
+		<div className="space-y-2">
+			<img src={photo} alt="" className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
+			<div className="flex items-center text-lg">
+				<span className="font-bold">Stock Status : {stock}</span>
+			</div>
+		</div>
+		<div className="space-y-2">
+			<a rel="noopener noreferrer" href="#" className="block">
+				<h3 className="text-xl font-semibold dark:text-violet-600">{name}</h3>
+			</a>
+  
+			<p className="leading-snug dark:text-gray-600">{description} <br />
+      <div className="my-2 mx-auto items-center justify-end flex">
+      <Link className="" data-tooltip-id="my-tooltip" data-tooltip-content="View Details" to={`/productDetails/${_id}`}>
+                    <h1 className="  btn rounded-full  bg-[#2f7dfc] text-lg font-bold text-white"><FaRegArrowAltCircleRight /></h1>     
                 </Link>
-                <Link to={`/updateProduct/${_id}`}>
+                <Tooltip id="my-tooltip" />
+      </div>
+      
+    
+                {/* <Link  data-tooltip-id="my-tooltip" data-tooltip-content="Update" to={`/updateProduct/${_id}`}>
                     <button className="btn bg-[#2f7dfc] text-lg font-bold text-white"><MdBrowserUpdated /></button>
-                </Link>
-                <button 
-                    onClick={()=> handleDelete(_id)}
-                    className="btn bg-[#2f7dfc] text-lg font-bold text-white"><RiDeleteBin6Line />
-                </button>
-            </div>
-        </div>
-    </div>
+                </Link> */}
+                
+      
+     </p>
+     
+		</div>
+    
+    
+	</div>
 </div>
-   </div>
+    </div>
+  
 
   );
 };

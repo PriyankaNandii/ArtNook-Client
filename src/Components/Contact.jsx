@@ -1,12 +1,38 @@
+import { Typewriter } from 'react-simple-typewriter';
 import doodle from '../assets/doodle.svg';
 
 const Contact = () => {
+	const handleType = (count) => {
+		// access word count number
+		console.log(count);
+	  };
+	
+	  const handleDone = () => {
+		console.log(`Done after 5 loops!`);
+	  };
     return (
-        <div className="bg-[#dde3e8] min-h-screen">
+        <div className=" min-h-screen">
             <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32  dark:text-gray-800">
 	<div className="flex flex-col justify-between">
 		<div className="space-y-2">
-			<h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
+		<h1 style={{ paddingTop: '2rem', margin: 'auto 0', fontWeight: 'bold', textAlign: 'left', fontSize: '3rem' }}>
+		Let's{' '}
+              <span style={{ color: '#2f7dfc', fontWeight: 'bold' }}>
+                {/* Style will be inherited from the parent element */}
+                <Typewriter
+                   words={['talk!', 'talk!', 'talk!', 'talk!', 'talk!']}
+                  loop={5}
+                  cursor
+                  cursorStyle='_'
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                  onLoopDone={handleDone}
+                  onType={handleType}
+                />
+              </span>
+            </h1>
+			
 			<div className="">Want to discuss with us? Feel free to contact.</div>
 		</div>
 		<img src={doodle} alt="" className="p-6 h-52 md:h-64" />
