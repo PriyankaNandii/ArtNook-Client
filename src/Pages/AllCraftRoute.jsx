@@ -16,7 +16,7 @@ const AllCraftRoute = ({ product, serialNumber }) => {
   // const {
   //   _id,
   //   name,
-  //   pho
+  //  
   //
   //   
   //   stock
