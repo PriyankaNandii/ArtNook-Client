@@ -12,6 +12,16 @@ const AllCraftRoute = ({ product, serialNumber }) => {
     stock
   } = product;
 
+
+  // const {
+  //   _id,
+  //   name,
+  //   photo,
+  //   price,
+  //   
+  //   stock
+  // } = product;
+
   return (
     <tr key={_id} className="hover:bg-gray-100 hover:text-black border-t">
     <td className="px-4 py-4">{serialNumber}</td>
