@@ -9,7 +9,7 @@ Our Art & Craft Store website specializes in Paper Crafts & Glass Art, providing
 - **Responsive Design**: Optimized for mobile, tablet, and desktop views.
 
 ## Technology Used
-- **Frontend**: React, React Router
+- **Frontend**: React, React Router, Tailwind CSS, Daisy UI
 - **Backend**: Node.js, Express, MongoDB
 - **Other**: Firebase for authentication and storage, SweetAlert for notifications
 
